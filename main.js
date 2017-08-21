@@ -20,7 +20,6 @@ function drawBackground() {
 }
 
 function drawMountains(mountainColor) {
-
   let x = 0;
   let y = windowHeight * ((Math.random() * 0.2) + 0.7); // 0.4 - 0.6
   c.strokeStyle = mountainColor;
@@ -31,8 +30,8 @@ function drawMountains(mountainColor) {
     let dy = (Math.random() - 0.5) * 100; // -50 - 50
     x = x + dx;
     y = y + dy;
-    if (y < 0 || y > windowHeight) { // if it goes over the top of the canvas
-      y = y - 2 * dy; // go in the other direction twice the distance (basically like just going down the same amount once);
+    if (y < 0 || y > windowHeight) { // if it goes over the top or under the bottom of the canvas
+      y = y - 2 * dy; // go in the other direction twice the distance (basically like just going the original direction the same amount once);
     }
     if (x > windowWidth) {
       x = windowWidth;
