@@ -19,7 +19,7 @@ function drawBackground() {
   c.fillRect(0, 0, windowWidth, windowHeight);
 }
 
-function drawMountains(mountainColor) {
+function drawMountain(mountainColor) {
   let x = 0;
   let y = windowHeight * ((Math.random() * 0.2) + 0.7); // 0.4 - 0.6
   c.strokeStyle = mountainColor;
@@ -44,16 +44,44 @@ function drawMountains(mountainColor) {
   c.lineTo(0, windowHeight);
   c.lineTo(0, windowHeight * 0.4);
 
+  // fill in the colors
   c.stroke();
   c.fillStyle = mountainColor
   c.fill();
 }
 
+function drawMountains () {
+  for (let i = 0; i < mountainColors.length; i++ ) {
+    drawMountain(mountainColors[i]);
+  }
+}
+
+let starLowerBound = windowHeight * 0.3;
+
+function drawStar() {
+  c.beginPath();
+
+  let randomX = Math.random() * windowWidth;
+  let randomY = Math.random() * starLowerBound;
+
+  let randomOpacity = Math.random();
+  c.fillStyle = `rgba(255,255,255, ${randomOpacity})`;
+
+  c.arc(randomX, randomY, 1, 0, 2 * Math.PI);
+  c.fill();
+}
+
+let numberOfStars = 100;
+function drawStars() {
+  for (let i = 0; i < numberOfStars; i++) {
+    drawStar();
+  }
+}
+
 function drawScene() {
   drawBackground();
-  for (let i = 0; i < mountainColors.length; i++ ) {
-    drawMountains(mountainColors[i]);
-  }
+  drawStars();
+  drawMountains();
 }
 
 drawScene();
