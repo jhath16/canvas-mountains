@@ -19,6 +19,7 @@ function drawBackground() {
   c.fillRect(0, 0, windowWidth, windowHeight);
 }
 
+//only draws one mountain range (across the screen);
 function drawMountain(mountainColor) {
   let x = 0;
   let y = windowHeight * ((Math.random() * 0.2) + 0.7); // 0.4 - 0.6
@@ -62,9 +63,10 @@ function drawStar() {
   c.beginPath();
 
   let randomX = Math.random() * windowWidth;
-  let randomY = Math.random() * starLowerBound;
+  let randomYSeed = Math.random();
+  let randomY = randomYSeed * starLowerBound;
 
-  let randomOpacity = Math.random();
+  let randomOpacity = 0.7 - (Math.random() * randomYSeed); 
   c.fillStyle = `rgba(255,255,255, ${randomOpacity})`;
 
   c.arc(randomX, randomY, 1, 0, 2 * Math.PI);
